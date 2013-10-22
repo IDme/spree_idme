@@ -1,0 +1,79 @@
+<div class="field alpha omega eight columns">
+
+  <%= label_tag "#{param_prefix}_idme_client_id", 
+      Spree.t('product_rule.idme_client_id') %>
+
+  <%= text_field_tag "#{param_prefix}[idme_client_id]", 
+      promotion_rule.idme_client_id, :class => 'fullwidth' %>
+
+</div>
+
+<div class="field alpha omega eight columns">
+
+  <%= label_tag "#{param_prefix}_idme_client_secret", 
+      Spree.t('product_rule.idme_client_secret') %>
+
+  <%= text_field_tag "#{param_prefix}[idme_client_secret]", 
+      promotion_rule.idme_client_secret, :class => 'fullwidth' %>
+
+</div>
+
+<div class="field alpha omega eight columns">
+
+  <%= label_tag "#{param_prefix}_idme_redirect_uri", 
+      Spree.t('product_rule.site_redirect_url') %>
+
+  <%= text_field_tag "#{param_prefix}[idme_redirect_uri]", 
+      promotion_rule.idme_redirect_uri, :class => 'fullwidth' %>
+
+</div>
+
+<div class="field alpha omega eight columns">
+
+  <%= label_tag "#{param_prefix}_idme_verify_button", 
+      Spree.t('product_rule.verify_button_text') %>
+
+  <%= text_area_tag "#{param_prefix}[idme_verify_button]", 
+      promotion_rule.idme_verify_button, :class => 'fullwidth', :rows => 6 %>
+
+</div>
+
+<div class="field alpha omega two columns">
+
+  <%= label_tag "#{param_prefix}_idme_sandbox", 
+      Spree.t('product_rule.sandbox') %>
+
+  <%= check_box_tag "#{param_prefix}[idme_sandbox]", '1', 
+      promotion_rule.idme_sandbox, :class => 'fullwidth' %>
+
+</div>
+
+<div class="field alpha omega two columns">
+
+  <%= label_tag "#{param_prefix}_idme_student", 
+      Spree.t('product_rule.students') %>
+
+  <%= check_box_tag "#{param_prefix}[idme_student]", '1',
+      promotion_rule.idme_student, :class => 'fullwidth' %>
+
+</div>
+
+<div class="field alpha omega two columns">
+
+  <%= label_tag "#{param_prefix}_idme_military", 
+      Spree.t('product_rule.military') %>
+
+  <%= check_box_tag "#{param_prefix}[idme_military]", '1',
+      promotion_rule.idme_military, :class => 'fullwidth' %>
+
+</div>
+
+<div class="field alpha omega two columns">
+
+  <%= label_tag "#{param_prefix}_idme_responder", 
+      Spree.t('product_rule.responders') %>
+
+  <%= check_box_tag "#{param_prefix}[idme_responder]", '1',
+      promotion_rule.idme_responder, :class => 'fullwidth' %>
+
+</div>
