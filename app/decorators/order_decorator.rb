@@ -8,7 +8,6 @@ module Spree
       else
         url_to_post = "https://api.id.me/oauth/token"
       end
-      logger.ap url_to_post
 
       result = HTTParty.post(url_to_post.to_str,
           :body => { :code          => request_code,
