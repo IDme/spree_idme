@@ -1,72 +1,24 @@
 <div class="field alpha omega eight columns">
+  <center>
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :military, promotion_rule.idme_affinity.nil? || promotion_rule.idme_affinity == "military" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.military') %>
+    &nbsp;
+    &nbsp;
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :student, promotion_rule.idme_affinity == "student" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.students') %>
+    &nbsp;
+    &nbsp;
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :responder, promotion_rule.idme_affinity == "responder" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.responders') %>
 
-  <%= label_tag "#{param_prefix}_idme_client_id", 
-      Spree.t('product_rule.idme_client_id') %>
-  <%= text_field_tag promotion_rule.spree_idme_setting.idme_client_id_string, 
-      promotion_rule.spree_idme_setting.idme_client_id_string, :class => 'fullwidth' %>
+    <br />
+    <br />
 
-</div>
-
-<div class="field alpha omega eight columns">
-
-  <%= label_tag "#{param_prefix}_idme_client_secret", 
-      Spree.t('product_rule.idme_client_secret') %>
-
-  <%= text_field_tag promotion_rule.spree_idme_setting.idme_client_secret, 
-      promotion_rule.spree_idme_setting.idme_client_secret, :class => 'fullwidth' %>
-
-</div>
-
-<div class="field alpha omega eight columns">
-
-  <%= label_tag "#{param_prefix}_idme_redirect_uri", 
-      Spree.t('product_rule.site_redirect_url') %>
-
-  <%= text_field_tag promotion_rule.spree_idme_setting.redirect_uri, 
-      promotion_rule.spree_idme_setting.redirect_uri, :class => 'fullwidth' %>
-
-</div>
-
-<div class="field alpha omega eight columns">
-
-  <%= label_tag "#{param_prefix}_military_button", 
-      Spree.t('product_rule.military_button_image_url') %>
-
-  <%= text_field_tag promotion_rule.spree_idme_setting.military_button, 
-      promotion_rule.spree_idme_setting.military_button, :class => 'fullwidth' %>
-
-</div>
-
-<div class="field alpha omega eight columns">
-
-  <%= label_tag "#{param_prefix}_student_button", 
-      Spree.t('product_rule.student_button_image_url') %>
-
-  <%= text_field_tag promotion_rule.spree_idme_setting.student_button, 
-      promotion_rule.spree_idme_setting.student_button, :class => 'fullwidth' %>
-
-</div>
-
-<div class="field alpha omega eight columns">
-
-  <%= label_tag "#{param_prefix}_responder_button", 
-      Spree.t('product_rule.responder_button_image_url') %>
-
-  <%= text_field_tag promotion_rule.spree_idme_setting.responder_button, 
-      promotion_rule.spree_idme_setting.responder_button, :class => 'fullwidth' %>
-
-</div>
-
-<div class="field alpha omega two columns">
-
-  <%= label_tag "#{param_prefix}_idme_sandbox", 
-      Spree.t('product_rule.sandbox') %>
-
-  <%= check_box_tag "#{param_prefix}[idme_sandbox]", '1', 
-      promotion_rule.idme_sandbox, :class => 'fullwidth' %>
-
-</div>
-
-<div class="field alpha omega two columns">
+    <% if SpreeIdmeSetting.first.idme_client_id_string.nil? || SpreeIdmeSetting.first.idme_client_id_string.blank? %>
+      <a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a>
+    <% end %>
+ 
+    <%= link_to "Site-Wide ID.me Settings", admin_idme_settings_path, :class => "button" %>
+  </center>
 
 </div>

@@ -1,13 +1,12 @@
 module Spree
   class IdmeController < Spree::StoreController
     def verification
-      # TODO: need to switch around all these preferences to be class methods instead of instanced
-      @promotion = IdmePromotionRule.last
+      @settings = SpreeIdmeSetting.first
 
-      client_id     = @promotion.spree_idme_setting.idme_client_id_string
-      client_secret = @promotion.spree_idme_setting.idme_client_secret
-      redirect_uri  = @promotion.spree_idme_setting.redirect_uri
-      sandbox       = @promotion.idme_sandbox
+      client_id     = @settings.idme_client_id_string
+      client_secret = @settings.idme_client_secret
+      redirect_uri  = @settings.redirect_uri
+      sandbox       = @settings.idme_sandbox
 
       @order = current_order(true)
       @order.attach_idme_access_token!(params[:code], client_id, client_secret, redirect_uri, sandbox)

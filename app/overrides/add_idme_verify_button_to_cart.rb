@@ -1,21 +1,21 @@
 Deface::Override.new(:virtual_path => 'spree/orders/edit',
                      :insert_before => "[data-hook = 'cart_buttons']",
                      :text => 
-                       "<% if IdmePromotionRule.last.idme_sandbox %>
+                       "<% if SpreeIdmeSetting.first.idme_sandbox %>
                           <% idme_server_url = 'https://www.sandbox.id.me/oauth/authorize' %>
                         <% else %>
                           <% idme_server_url = 'https://www.id.me/oauth/authorize' %>
                         <% end %>
 
-                        <% if IdmePromotionRule.where(:idme_affinity => 'Military').count > 0 %>
+                        <% if IdmePromotionRule.where(:idme_affinity => 'military').count > 0 %>
                           <% enable_military = true %>
                         <% end %>
 
-                        <% if IdmePromotionRule.where(:idme_affinity => 'Student').count > 0 %>
+                        <% if IdmePromotionRule.where(:idme_affinity => 'student').count > 0 %>
                           <% enable_student = true %>
                         <% end %>
 
-                        <% if IdmePromotionRule.where(:idme_affinity => 'Responder').count > 0 %>
+                        <% if IdmePromotionRule.where(:idme_affinity => 'responder').count > 0 %>
                           <% enable_responder = true %>
                         <% end %>
 

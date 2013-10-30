@@ -1,0 +1,56 @@
+<div class="promotion_rule promotion-block alpha omega eight columns" id="idme_settings">
+  <h6 class="promotion-title ">Site-Wide ID.me Settings</h6>
+  <%= form_for(@settings, :url => publish_admin_idme_settings_path) do |form| %>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :idme_client_id_string, "ID.me Client ID" %>:
+      <%= form.text_field :idme_client_id_string, :class => 'fullwidth' %><br />
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :idme_client_secret, "ID.me Client Secret" %>:
+      <%= form.text_field :idme_client_secret, :class => 'fullwidth' %><br />
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :redirect_uri, "Redirect URL" %>:
+      <%= form.text_field :redirect_uri, :class => 'fullwidth' %><br />
+    </div>
+
+    <p>
+      TODO: Change these fields to select boxes with pre-filled options from the site.
+      TODO: Add paperclip for uploading custom icons for affinity groups.
+    </p>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :military_button, "Military Button" %>:
+      <%= form.text_field :military_button, :class => 'fullwidth' %><br />
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :responder_button, "First Responder Button" %>:
+      <%= form.text_field :responder_button, :class => 'fullwidth' %><br />
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :student_button, "Student Button" %>:
+      <%= form.text_field :student_button, :class => 'fullwidth' %><br />
+    </div>
+
+    <center>
+      <div class="field alpha omega eight columns">
+        <%= form.label :idme_sandbox, "Sandbox Mode" %>:
+        <%= form.check_box :idme_sandbox %>
+      </div>
+      <div class="field alpha omega eight columns">
+        <%= form.submit "Update ID.me Settings" %>
+        <% if @settings.idme_client_id_string.nil? || @settings.idme_client_id_string.blank? %>
+          <a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a>
+        <% else %>
+          <%= link_to "Back to Promotions", admin_promotions_path, :class => "button" %>
+        <% end %>
+      </div>
+    </center>
+
+  <% end %>
+</div>
