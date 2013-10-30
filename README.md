@@ -1,4 +1,4 @@
-spree_idme
+spree idme
 ==========
 
 Thanks for using our Spree Extension to enable ID.me functionality.
@@ -9,7 +9,7 @@ Installation
 Add spree_idme to your Gemfile:
 
 ```ruby
-gem 'spree_idme', :git => "git://github.com/idme/spree_idme.git"
+gem 'spree_idme', :git => "git://github.com/IDme/spree_idme.git"
 ```
 
 Bundle your dependencies and run the installation generator:
