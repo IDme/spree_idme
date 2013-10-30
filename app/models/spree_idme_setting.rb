@@ -7,7 +7,11 @@ class SpreeIdmeSetting < ActiveRecord::Base
     self.responder_button      = params["responder_button"]
     self.military_button       = params["military_button"]
     self.student_button        = params["student_button"]
-    self.redirect_uri          = params["redirect_uri"]
+
+    redirect_uri               = URI.parse(params["redirect_uri"])
+    redirect_uri.path          = URI.escape("/idme")
+    self.redirect_uri          = redirect_uri.to_s
+
     self.idme_sandbox          = params["idme_sandbox"]
     self.save
   end
