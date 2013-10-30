@@ -1,5 +1,5 @@
-SpreeIdme
-=========
+spree_idme
+==========
 
 Thanks for using our Spree Extension to enable ID.me functionality.
 
