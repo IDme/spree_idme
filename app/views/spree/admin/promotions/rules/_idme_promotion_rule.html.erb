@@ -1,15 +1,53 @@
 <div class="field alpha omega eight columns">
   <center>
-    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :military, promotion_rule.idme_affinity.nil? || promotion_rule.idme_affinity == "military" %>
-    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.military') %>
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :military_active, promotion_rule.idme_affinity.nil? || promotion_rule.idme_affinity == "military_active" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.service_members') %>
     &nbsp;
     &nbsp;
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :military_veteran, promotion_rule.idme_affinity == "military_veteran" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.veterans') %>
+    &nbsp;
+    &nbsp;
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :military_retiree, promotion_rule.idme_affinity == "military_retiree" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.military_retirees') %>
+
+    <br />
+    <br />
+
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :military_spouse, promotion_rule.idme_affinity == "military_spouse" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.military_spouses') %>
+    &nbsp;
+    &nbsp;
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :military_family, promotion_rule.idme_affinity == "military_family" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.military_family') %>
+
+    <br />
+    <br />
+
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :responder_emt, promotion_rule.idme_affinity == "responder_emt" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.emts') %>
+    &nbsp;
+    &nbsp;
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :responder_firefighter, promotion_rule.idme_affinity == "responder_firefighter" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.firefighters') %>
+    &nbsp;
+    &nbsp;
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :responder_police, promotion_rule.idme_affinity == "responder_police" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.police_officers') %>
+
+    <br />
+    <br />
+
     <%= radio_button_tag "#{param_prefix}[idme_affinity]", :student, promotion_rule.idme_affinity == "student" %>
     <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.students') %>
     &nbsp;
     &nbsp;
-    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :responder, promotion_rule.idme_affinity == "responder" %>
-    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.responders') %>
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :military_all, promotion_rule.idme_affinity == "military_all" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.all_military_and_family') %>
+    &nbsp;
+    &nbsp;
+    <%= radio_button_tag "#{param_prefix}[idme_affinity]", :responder_all, promotion_rule.idme_affinity == "responder_all" %>
+    <%= label_tag "#{param_prefix}_idme_affinity", Spree.t('promotion_rule.all_first_responders') %>
 
     <br />
     <br />

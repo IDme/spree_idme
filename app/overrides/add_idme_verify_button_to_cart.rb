@@ -7,7 +7,27 @@ Deface::Override.new(:virtual_path => 'spree/orders/edit',
                           <% idme_server_url = 'https://www.id.me/oauth/authorize' %>
                         <% end %>
 
-                        <% if IdmePromotionRule.where(:idme_affinity => 'military').count > 0 %>
+                        <% if IdmePromotionRule.where(:idme_affinity => 'military_all').count > 0 %>
+                          <% enable_military = true %>
+                        <% end %>
+
+                        <% if IdmePromotionRule.where(:idme_affinity => 'military_active').count > 0 %>
+                          <% enable_military = true %>
+                        <% end %>
+
+                        <% if IdmePromotionRule.where(:idme_affinity => 'military_veteran').count > 0 %>
+                          <% enable_military = true %>
+                        <% end %>
+
+                        <% if IdmePromotionRule.where(:idme_affinity => 'military_spouse').count > 0 %>
+                          <% enable_military = true %>
+                        <% end %>
+
+                        <% if IdmePromotionRule.where(:idme_affinity => 'military_family').count > 0 %>
+                          <% enable_military = true %>
+                        <% end %>
+
+                        <% if IdmePromotionRule.where(:idme_affinity => 'military_retiree').count > 0 %>
                           <% enable_military = true %>
                         <% end %>
 
@@ -15,7 +35,19 @@ Deface::Override.new(:virtual_path => 'spree/orders/edit',
                           <% enable_student = true %>
                         <% end %>
 
-                        <% if IdmePromotionRule.where(:idme_affinity => 'responder').count > 0 %>
+                        <% if IdmePromotionRule.where(:idme_affinity => 'responder_all').count > 0 %>
+                          <% enable_responder = true %>
+                        <% end %>
+
+                        <% if IdmePromotionRule.where(:idme_affinity => 'responder_emt').count > 0 %>
+                          <% enable_responder = true %>
+                        <% end %>
+
+                        <% if IdmePromotionRule.where(:idme_affinity => 'responder_firefighter').count > 0 %>
+                          <% enable_responder = true %>
+                        <% end %>
+
+                        <% if IdmePromotionRule.where(:idme_affinity => 'responder_police').count > 0 %>
                           <% enable_responder = true %>
                         <% end %>
 
