@@ -12,6 +12,7 @@ class SpreeIdmeSetting < ActiveRecord::Base
     redirect_uri.path          = URI.escape("/idme")
     self.redirect_uri          = redirect_uri.to_s
 
+    self.idme_modal            = params["idme_modal"]
     self.idme_sandbox          = params["idme_sandbox"]
     self.save
   end
