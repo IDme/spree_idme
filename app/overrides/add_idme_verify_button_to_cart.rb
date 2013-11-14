@@ -2,7 +2,7 @@ Deface::Override.new(:virtual_path => 'spree/orders/edit',
                      :insert_before => "[data-hook = 'cart_buttons']",
                      :text => 
                        "<% if SpreeIdmeSetting.first.idme_sandbox %>
-                          <% idme_server_url = 'https://www.sandbox.id.me/oauth/authorize' %>
+                          <% idme_server_url = 'http://sandbox.id.me/oauth/authorize' %>
                         <% else %>
                           <% idme_server_url = 'https://www.id.me/oauth/authorize' %>
                         <% end %>
@@ -95,8 +95,8 @@ Deface::Override.new(:virtual_path => 'spree/orders/edit',
                             <a href='<%= idme_server_url %>?client_id=<%= SpreeIdmeSetting.first.idme_client_id_string %>&redirect_uri=<%= SpreeIdmeSetting.first.redirect_uri %>&response_type=code&scope=responder'>
                             <img alt='Verify your first responder affiliation with ID.me' src='<%= SpreeIdmeSetting.first.responder_button %>' /></a>
                           <% end %>
-                          <br />
                         <% end %>
+                        <br />
                         <br />",
                      :name => "idme_verify_button"
                     )

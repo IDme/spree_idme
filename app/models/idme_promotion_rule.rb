@@ -3,17 +3,23 @@ class IdmePromotionRule < Spree::PromotionRule
   belongs_to :spree_idme_setting
 
   def eligible?(order, options = {})
+    if SpreeIdmeSetting.first.idme_sandbox
+      url_to_endpoint = "http://api.sandbox.id.me/v2"
+    else
+      url_to_endpoint = "https://api.id.me/v2"
+    end
+
     require 'json'
     if !order.idme_access_token.nil?
       begin
       # truncate the string to simplify request
       case idme_affinity[0, 8]
       when "military"
-        verification_request = JSON.parse(open("https://api.sandbox.id.me/v2/military.json?access_token=#{order.idme_access_token}").read)
+        verification_request = JSON.parse(open("#{url_to_endpoint}/military.json?access_token=#{order.idme_access_token}").read)
       when "student"
-        verification_request = JSON.parse(open("https://api.sandbox.id.me/v2/student.json?access_token=#{order.idme_access_token}").read)
+        verification_request = JSON.parse(open("#{url_to_endpoint}/student.json?access_token=#{order.idme_access_token}").read)
       when "responde"
-        verification_request = JSON.parse(open("https://api.sandbox.id.me/v2/responder.json?access_token=#{order.idme_access_token}").read)
+        verification_request = JSON.parse(open("#{url_to_endpoint}/responder.json?access_token=#{order.idme_access_token}").read)
       else
         return false
       end
