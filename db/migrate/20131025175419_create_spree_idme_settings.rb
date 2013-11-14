@@ -8,7 +8,7 @@ class CreateSpreeIdmeSettings < ActiveRecord::Migration
       t.string  :student_button
       t.string  :responder_button
       t.boolean :idme_sandbox
-
+      t.boolean :idme_modal
       t.timestamps
     end
     SpreeIdmeSetting.create!(:military_button => "https://s3.amazonaws.com/idme/buttons/troop_gray2_squ_40.png", :student_button => "https://s3.amazonaws.com/idme/buttons/student_gray2_squ_40.png", :responder_button => "https://s3.amazonaws.com/idme/buttons/responder_gray2_squ_40.png")
