@@ -22,17 +22,104 @@
 
     <div class="field alpha omega eight columns">
       <%= form.label :military_button, "Military Button" %>:
-      <%= form.text_field :military_button, :class => 'fullwidth' %><br />
-    </div>
-
-    <div class="field alpha omega eight columns">
-      <%= form.label :responder_button, "First Responder Button" %>:
-      <%= form.text_field :responder_button, :class => 'fullwidth' %><br />
+      <%= form.select :military_button,
+          options_for_select(
+              {
+                  "Small Red Rounded"         => "https://s3.amazonaws.com/idme/buttons/troop_red_rnd_20.png",
+                  "Medium Red Rounded"        => "https://s3.amazonaws.com/idme/buttons/troop_red_rnd_32.png",
+                  "Large Red Rounded"         => "https://s3.amazonaws.com/idme/buttons/troop_red_rnd_40.png",
+                  "Small Red Square"          => "https://s3.amazonaws.com/idme/buttons/troop_red_squ_20.png",
+                  "Medium Red Square"         => "https://s3.amazonaws.com/idme/buttons/troop_red_squ_32.png",
+                  "Large Red Square"          => "https://s3.amazonaws.com/idme/buttons/troop_red_squ_40.png",
+                  "Small Black Rounded"       => "https://s3.amazonaws.com/idme/buttons/troop_black_rnd_20.png",
+                  "Medium Black Rounded"      => "https://s3.amazonaws.com/idme/buttons/troop_black_rnd_32.png",
+                  "Large Black Rounded"       => "https://s3.amazonaws.com/idme/buttons/troop_black_rnd_40.png",
+                  "Small Black Square"        => "https://s3.amazonaws.com/idme/buttons/troop_black_squ_20.png",
+                  "Medium Black Square"       => "https://s3.amazonaws.com/idme/buttons/troop_black_squ_32.png",
+                  "Large Black Square"        => "https://s3.amazonaws.com/idme/buttons/troop_black_squ_40.png",
+                  "Small Light Gray Rounded"  => "https://s3.amazonaws.com/idme/buttons/troop_gray1_rnd_20.png",
+                  "Medium Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/troop_gray1_rnd_32.png",
+                  "Large Light Gray Rounded"  => "https://s3.amazonaws.com/idme/buttons/troop_gray1_rnd_40.png",
+                  "Small Light Gray Square"   => "https://s3.amazonaws.com/idme/buttons/troop_gray1_squ_20.png",
+                  "Medium Light Gray Square"  => "https://s3.amazonaws.com/idme/buttons/troop_gray1_squ_32.png",
+                  "Large Light Gray Square"   => "https://s3.amazonaws.com/idme/buttons/troop_gray1_squ_40.png",
+                  "Small Dark Gray Rounded"   => "https://s3.amazonaws.com/idme/buttons/troop_gray2_rnd_20.png",
+                  "Medium Dark Gray Rounded"  => "https://s3.amazonaws.com/idme/buttons/troop_gray2_rnd_32.png",
+                  "Large Dark Gray Rounded"   => "https://s3.amazonaws.com/idme/buttons/troop_gray2_rnd_40.png",
+                  "Small Dark Gray Square"    => "https://s3.amazonaws.com/idme/buttons/troop_gray2_squ_20.png",
+                  "Medium Dark Gray Square"   => "https://s3.amazonaws.com/idme/buttons/troop_gray2_squ_32.png",
+                  "Large Dark Gray Square"    => "https://s3.amazonaws.com/idme/buttons/troop_gray2_squ_40.png",
+                  "Small White Rounded"       => "https://s3.amazonaws.com/idme/buttons/troop_white_rnd_20.png",
+                  "Medium White Rounded"      => "https://s3.amazonaws.com/idme/buttons/troop_white_rnd_32.png",
+                  "Large White Rounded"       => "https://s3.amazonaws.com/idme/buttons/troop_white_rnd_40.png",
+                  "Small White Square"        => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_20.png",
+                  "Medium White Square"       => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_32.png",
+                  "Large White Square"        => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_40.png"
+              }, selected: @settings.military_button), {}, :class => 'fullwidth' %><br />
     </div>
 
     <div class="field alpha omega eight columns">
       <%= form.label :student_button, "Student Button" %>:
-      <%= form.text_field :student_button, :class => 'fullwidth' %><br />
+      <%= form.select :student_button,
+          options_for_select(
+              {
+                  "Small Black Rounded" => "https://s3.amazonaws.com/idme/buttons/student_black_rnd_20.png",
+                  "Medium Black Rounded"=> "https://s3.amazonaws.com/idme/buttons/student_black_rnd_32.png",
+                  "Large Black Rounded" => "https://s3.amazonaws.com/idme/buttons/student_black_rnd_40.png",
+                  "Small Black Square" => "https://s3.amazonaws.com/idme/buttons/student_black_squ_20.png",
+                  "Medium Black Square" => "https://s3.amazonaws.com/idme/buttons/student_black_squ_32.png",
+                  "Large Black Square" => "https://s3.amazonaws.com/idme/buttons/student_black_squ_40.png",
+                  "Small Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/student_gray1_rnd_20.png",
+                  "Medium Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/student_gray1_rnd_32.png",
+                  "Large Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/student_gray1_rnd_40.png",
+                  "Small Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/student_gray1_squ_20.png",
+                  "Medium Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/student_gray1_squ_32.png",
+                  "Large Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/student_gray1_squ_40.png",
+                  "Small Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/student_gray2_rnd_20.png",
+                  "Medium Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/student_gray2_rnd_32.png",
+                  "Large Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/student_gray2_rnd_40.png",
+                  "Small Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/student_gray2_squ_20.png",
+                  "Medium Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/student_gray2_squ_32.png",
+                  "Large Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/student_gray2_squ_40.png",
+                  "Small White Rounded" => "https://s3.amazonaws.com/idme/buttons/student_white_rnd_20.png",
+                  "Medium White Rounded" => "https://s3.amazonaws.com/idme/buttons/student_white_rnd_32.png",
+                  "Large White Rounded" => "https://s3.amazonaws.com/idme/buttons/student_white_rnd_40.png",
+                  "Small White Square" => "https://s3.amazonaws.com/idme/buttons/student_white_squ_20.png",
+                  "Medium White Square" => "https://s3.amazonaws.com/idme/buttons/student_white_squ_32.png",
+                  "Large White Square" => "https://s3.amazonaws.com/idme/buttons/student_white_squ_40.png"
+              }, selected: @settings.student_button), {}, :class => 'fullwidth' %><br />
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :responder_button, "First Responder Button" %>:
+      <%= form.select :responder_button,
+          options_for_select(
+              {
+                  "Small Black Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_black_rnd_20.png",
+                  "Medium Black Rounded"=> "https://s3.amazonaws.com/idme/buttons/responder_black_rnd_32.png",
+                  "Large Black Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_black_rnd_40.png",
+                  "Small Black Square" => "https://s3.amazonaws.com/idme/buttons/responder_black_squ_20.png",
+                  "Medium Black Square" => "https://s3.amazonaws.com/idme/buttons/responder_black_squ_32.png",
+                  "Large Black Square" => "https://s3.amazonaws.com/idme/buttons/responder_black_squ_40.png",
+                  "Small Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_gray1_rnd_20.png",
+                  "Medium Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_gray1_rnd_32.png",
+                  "Large Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_gray1_rnd_40.png",
+                  "Small Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/responder_gray1_squ_20.png",
+                  "Medium Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/responder_gray1_squ_32.png",
+                  "Large Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/responder_gray1_squ_40.png",
+                  "Small Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_gray2_rnd_20.png",
+                  "Medium Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_gray2_rnd_32.png",
+                  "Large Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_gray2_rnd_40.png",
+                  "Small Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/responder_gray2_squ_20.png",
+                  "Medium Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/responder_gray2_squ_32.png",
+                  "Large Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/responder_gray2_squ_40.png",
+                  "Small White Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_white_rnd_20.png",
+                  "Medium White Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_white_rnd_32.png",
+                  "Large White Rounded" => "https://s3.amazonaws.com/idme/buttons/responder_white_rnd_40.png",
+                  "Small White Square" => "https://s3.amazonaws.com/idme/buttons/responder_white_squ_20.png",
+                  "Medium White Square" => "https://s3.amazonaws.com/idme/buttons/responder_white_squ_32.png",
+                  "Large White Square" => "https://s3.amazonaws.com/idme/buttons/responder_white_squ_40.png"
+              }, selected: @settings.responder_button), {}, :class => 'fullwidth' %><br />
     </div>
 
     <center>
