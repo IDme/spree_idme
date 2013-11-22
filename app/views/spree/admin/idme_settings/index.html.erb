@@ -22,6 +22,10 @@
 
     <div class="field alpha omega eight columns">
       <%= form.label :military_button, "Military Button" %>:
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
       <%= form.select :military_button,
           options_for_select(
               {
@@ -55,11 +59,17 @@
                   "Small White Square"        => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_20.png",
                   "Medium White Square"       => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_32.png",
                   "Large White Square"        => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_40.png"
-              }, selected: @settings.military_button), {}, :class => 'fullwidth' %><br />
+              }, selected: @settings.military_button), {} %><br />
+      <br />
+      <img src="<%= @settings.military_button %>" />
     </div>
 
     <div class="field alpha omega eight columns">
       <%= form.label :student_button, "Student Button" %>:
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
       <%= form.select :student_button,
           options_for_select(
               {
@@ -87,11 +97,15 @@
                   "Small White Square" => "https://s3.amazonaws.com/idme/buttons/student_white_squ_20.png",
                   "Medium White Square" => "https://s3.amazonaws.com/idme/buttons/student_white_squ_32.png",
                   "Large White Square" => "https://s3.amazonaws.com/idme/buttons/student_white_squ_40.png"
-              }, selected: @settings.student_button), {}, :class => 'fullwidth' %><br />
+              }, selected: @settings.student_button), {} %><br />
+      <br />
+      <img src="<%= @settings.student_button %>" />
     </div>
 
     <div class="field alpha omega eight columns">
-      <%= form.label :responder_button, "First Responder Button" %>:
+      <%= form.label :responder_button, "Responder Button" %>:
+      &nbsp;
+      &nbsp;
       <%= form.select :responder_button,
           options_for_select(
               {
@@ -119,7 +133,9 @@
                   "Small White Square" => "https://s3.amazonaws.com/idme/buttons/responder_white_squ_20.png",
                   "Medium White Square" => "https://s3.amazonaws.com/idme/buttons/responder_white_squ_32.png",
                   "Large White Square" => "https://s3.amazonaws.com/idme/buttons/responder_white_squ_40.png"
-              }, selected: @settings.responder_button), {}, :class => 'fullwidth' %><br />
+              }, selected: @settings.responder_button), {} %><br />
+      <br />
+      <img src="<%= @settings.responder_button %>" />
     </div>
 
     <center>
