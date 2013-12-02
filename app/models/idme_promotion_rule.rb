@@ -12,50 +12,80 @@ class IdmePromotionRule < Spree::PromotionRule
     require 'json'
     if !order.idme_access_token.nil?
       begin
-      # truncate the string to simplify request
-      case idme_affinity[0, 8]
-      when "military"
-        verification_request = JSON.parse(open("#{url_to_endpoint}/military.json?access_token=#{order.idme_access_token}").read)
-      when "student"
-        verification_request = JSON.parse(open("#{url_to_endpoint}/student.json?access_token=#{order.idme_access_token}").read)
-      when "responde"
-        verification_request = JSON.parse(open("#{url_to_endpoint}/responder.json?access_token=#{order.idme_access_token}").read)
-      else
-        return false
-      end
-      rescue OpenURI::HTTPError
-        return false
-      end
-      if verification_request["verified"]
-        case idme_affinity
-        when "military_all"
-          true
-        when "military_active"
-          verification_request["affiliation"] == "Service Member"
-        when "military_veteran"
-          verification_request["affiliation"] == "Veteran"
-        when "military_spouse"
-          verification_request["affiliation"] == "Military Spouse"
-        when "military_family"
-          verification_request["affiliation"] == "Military Family"
-        when "military_retiree"
-          verification_request["affiliation"] == "Retiree"
-        when "student"
-          true
-        when "responder_all"
-          true
-        when "responder_emt"
-          verification_request["affiliation"] == "Emt"
-        when "responder_firefighter"
-          verification_request["affiliation"] == "Firefighter"
-        when "responder_police"
-          verification_request["affiliation"] == "Police Officer"
-        else
-          false
+        if idme_military_active || idme_military_family || idme_military_veteran || idme_military_retiree || idme_military_spouse
+          military_request = JSON.parse(open("#{url_to_endpoint}/military.json?access_token=#{order.idme_access_token}").read)
         end
-      else 
-        false
+        military_endpoint = true
+      rescue OpenURI::HTTPError
+        military_endpoint = false
       end
+
+      begin
+        if idme_responder_emt || idme_responder_firefighter || idme_responder_police
+          responder_request = JSON.parse(open("#{url_to_endpoint}/responder.json?access_token=#{order.idme_access_token}").read)
+        end
+        responder_endpoint = true
+      rescue OpenURI::HTTPError
+        responder_endpoint = false
+      end
+
+      begin
+        if idme_student
+          student_request = JSON.parse(open("#{url_to_endpoint}/student.json?access_token=#{order.idme_access_token}").read)
+        end
+        student_endpoint = true
+      rescue OpenURI::HTTPError
+        student_endpoint = false
+      end
+
+      if military_endpoint
+        if idme_military_active
+          if military_request["affiliation"] == "Service Member"
+            return true
+          end
+        elsif idme_military_family
+          if military_request["affiliation"] == "Military Family"
+            return true
+          end
+        elsif idme_military_veteran
+          if military_request["affiliation"] == "Veteran"
+            return true
+          end
+        elsif idme_military_spouse
+          if military_request["affiliation"] == "Military Spouse"
+            return true
+          end
+        elsif idme_military_retiree
+          if military_request["affiliation"] == "Retiree"
+            return true
+          end
+        end
+      end
+
+      if responder_endpoint
+        if idme_responder_emt
+          if responder_request["affiliation"] == "Emt"
+            return true
+          end
+        elsif idme_responder_firefighter
+          if responder_request["affiliation"] == "Firefighter"
+            return true
+          end
+        elsif idme_responder_police
+          if responder_request["affiliation"] == "Police Officer"
+            return true
+          end
+        end
+      end
+
+      if student_endpoint
+        if idme_student
+          if student_request["verified"] == true
+            return true
+          end
+        end
+      end
+
     else
       false
     end
