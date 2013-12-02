@@ -6,6 +6,10 @@ Spree::Core::Engine.routes.draw do
         put :publish
       end
     end
-    
+  end
+  resources :idme_promotion_rule do
+    member do
+      put :publish
+    end
   end
 end

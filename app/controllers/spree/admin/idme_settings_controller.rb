@@ -10,6 +10,10 @@ module Spree
         @settings.update_site_idme_settings!(params[:spree_idme_setting])
         redirect_to admin_idme_settings_path
       end
+
+      def rule_update
+        logger.ap params
+      end
     end
   end
 end
