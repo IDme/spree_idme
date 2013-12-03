@@ -39,48 +39,64 @@ class IdmePromotionRule < Spree::PromotionRule
       end
 
       if military_endpoint
-        if idme_military_active
-          if military_request["affiliation"] == "Service Member"
-            return true
+        if military_request["verified"]
+          if idme_military_active
+            if military_request["affiliation"] == "Service Member"
+              return true
+            end
           end
-        elsif idme_military_family
-          if military_request["affiliation"] == "Military Family"
-            return true
+
+          if idme_military_family
+            if military_request["affiliation"] == "Military Family"
+              return true
+            end
           end
-        elsif idme_military_veteran
-          if military_request["affiliation"] == "Veteran"
-            return true
+
+          if idme_military_veteran
+            if military_request["affiliation"] == "Veteran"
+              return true
+            end
           end
-        elsif idme_military_spouse
-          if military_request["affiliation"] == "Military Spouse"
-            return true
+
+          if idme_military_spouse
+            if military_request["affiliation"] == "Military Spouse"
+              return true
+            end
           end
-        elsif idme_military_retiree
-          if military_request["affiliation"] == "Retiree"
-            return true
+
+          if idme_military_retiree
+            if military_request["affiliation"] == "Retiree"
+              return true
+            end
           end
         end
       end
 
       if responder_endpoint
-        if idme_responder_emt
-          if responder_request["affiliation"] == "Emt"
-            return true
+        if responder_request["verified"]
+          if idme_responder_emt
+            if responder_request["affiliation"] == "Emt"
+              return true
+            end
           end
-        elsif idme_responder_firefighter
-          if responder_request["affiliation"] == "Firefighter"
-            return true
+
+          if idme_responder_firefighter
+            if responder_request["affiliation"] == "Firefighter"
+              return true
+            end
           end
-        elsif idme_responder_police
-          if responder_request["affiliation"] == "Police Officer"
-            return true
+
+          if idme_responder_police
+            if responder_request["affiliation"] == "Police Officer"
+              return true
+            end
           end
         end
       end
 
       if student_endpoint
         if idme_student
-          if student_request["verified"] == true
+          if student_request["verified"]
             return true
           end
         end
