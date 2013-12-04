@@ -22,7 +22,7 @@ bundle exec rails g spree_idme:install
 Add the promotion rule to your application config (config/application.rb):
 
 ```ruby
-initializer "ritani.register.promotion.rules" do |app|
+initializer "appname.register.promotion.rules" do |app|
   app.config.spree.promotions.rules << Spree::Promotion::Rules::IdmePromotionRule
 end
 ```
