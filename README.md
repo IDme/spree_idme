@@ -19,10 +19,17 @@ bundle
 bundle exec rails g spree_idme:install
 ```
 
+Add the promotion rule to your application config (config/application.rb):
+
+```ruby
+initializer "ritani.register.promotion.rules" do |app|
+  app.config.spree.promotions.rules << Spree::Promotion::Rules::IdmePromotionRule
+end
+```
 Usage
 -----
 
-Visit https://developer.id.me/ and register for an account and obtain an API Key and Secret by creating 
+Visit https://developer.id.me/ and register for an account and obtain an API Key and Secret by creating
 an application for your Spree store. When setting up your ID.me application make sure to set the Base URI
 as your site's URL and set the Redirect URI to your store's URL with a path of /idme. For example, if
 your website is http://spree.id.me/ you should provide http://spree.id.me/idme as your Redirect URI when
@@ -32,7 +39,7 @@ Open your Spree store's admin settings, click on the ID.me settings tab and ente
 
 Next, open the Spree Promotions tab in the admin interface, and add a new promotion.
 
-Change the promotion's event name to "Order contents changed", then add an action type such as "Create adjustment" 
+Change the promotion's event name to "Order contents changed", then add an action type such as "Create adjustment"
 and enter the desired amount of adjustment.
 
 Next, Add a rule of type "id.me" and choose the affinity group to apply this promotion to.
