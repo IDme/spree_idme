@@ -1,0 +1,10 @@
+<tbody id="summary-order-charges" data-hook>
+  <% @order.adjustments.eligible.each do |adjustment| %>
+    <% next if (adjustment.originator_type == 'Spree::TaxRate') and (adjustment.amount == 0) %>
+      <div id="subtotal" class="columns sixteen alpha omega">
+        <h5><%= adjustment.label %>:
+          <span class="order-total"><%= number_to_currency adjustment.amount %></span>
+        </h5>
+      </div>
+  <% end %>
+</tbody>
