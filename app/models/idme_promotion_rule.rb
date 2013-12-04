@@ -2,6 +2,8 @@ class IdmePromotionRule < Spree::PromotionRule
 
   belongs_to :spree_idme_setting
 
+  attr_accessible :idme_military_active, :idme_military_veteran, :idme_military_retiree, :idme_military_spouse, :idme_military_family, :idme_responder_emt, :idme_responder_police, :idme_responder_firefighter, :idme_student
+
   def eligible?(order, options = {})
     if SpreeIdmeSetting.first.idme_sandbox
       url_to_endpoint = "https://api.sandbox.id.me/v2"

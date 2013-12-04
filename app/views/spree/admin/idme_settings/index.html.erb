@@ -1,30 +1,25 @@
 <div class="promotion_rule promotion-block alpha omega eight columns" id="idme_settings">
-  <h6 class="promotion-title ">Site-Wide ID.me Settings</h6>
   <%= form_for(@settings, :url => publish_admin_idme_settings_path) do |form| %>
 
     <div class="field alpha omega eight columns">
-      <%= form.label :idme_client_id_string, "ID.me Client ID" %>:
+      <%= form.label :idme_client_id_string, "ID.me Client ID" %>
       <%= form.text_field :idme_client_id_string, :class => 'fullwidth' %><br />
     </div>
 
     <div class="field alpha omega eight columns">
-      <%= form.label :idme_client_secret, "ID.me Client Secret" %>:
+      <%= form.label :idme_client_secret, "ID.me Client Secret" %>
       <%= form.text_field :idme_client_secret, :class => 'fullwidth' %><br />
     </div>
 
     <div class="field alpha omega eight columns">
-      <%= form.label :redirect_uri, "Redirect URL" %>:
+      <%= form.label :redirect_uri, "Redirect URL" %>
       <%= form.text_field :redirect_uri, :class => 'fullwidth' %><br />
     </div>
 
     <% #TODO: Add paperclip for uploading custom icons for affinity groups. %>
 
     <div class="field alpha omega eight columns">
-      <%= form.label :military_button, "Military Button" %>:
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
+      <%= form.label :military_button, "Military Button" %>
       <%= form.select :military_button,
           options_for_select(
               {
@@ -64,11 +59,7 @@
     </div>
 
     <div class="field alpha omega eight columns">
-      <%= form.label :student_button, "Student Button" %>:
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
+      <%= form.label :student_button, "Student Button" %>
       <%= form.select :student_button,
           options_for_select(
               {
@@ -102,9 +93,7 @@
     </div>
 
     <div class="field alpha omega eight columns">
-      <%= form.label :responder_button, "Responder Button" %>:
-      &nbsp;
-      &nbsp;
+      <%= form.label :responder_button, "Responder Button" %>
       <%= form.select :responder_button,
           options_for_select(
               {
@@ -137,28 +126,35 @@
       <img src="<%= @settings.responder_button %>" />
     </div>
 
-    <center>
-      <div class="field alpha omega eight columns">
-        <%= form.label :idme_sandbox, "Sandbox Mode" %>:
-        <%= form.check_box :idme_sandbox %>
+    <div class="field alpha omega eight columns">
+      <%= form.label :idme_sandbox, "Sandbox Mode" %>
+      <%= form.check_box :idme_sandbox %>
 
-        &nbsp;
-        &nbsp;
-        &nbsp;
+      <%= form.label :idme_modal, "Enable Modal" %>
+      <%= form.check_box :idme_modal %>
+    </div>
 
-        <%= form.label :idme_modal, "Enable Modal" %>:
-        <%= form.check_box :idme_modal %>
-      </div>
+    <div class="field alpha omega eight columns">
+      <button name="update_settings" type="submit">
+        <span>
+          Update ID.me Settings
+        </span>
+      </button>
 
-      <div class="field alpha omega eight columns">
-        <%= form.submit "Update ID.me Settings" %>
-        <% if @settings.idme_client_id_string.nil? || @settings.idme_client_id_string.blank? %>
-          <a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a>
-        <% else %>
-          <%= link_to "Back to Promotions", admin_promotions_path, :class => "button" %>
-        <% end %>
-      </div>
-    </center>
+      <% if @settings.idme_client_id_string.nil? || @settings.idme_client_id_string.blank? %>
+        <button name="obtain_keys">
+          <span>
+            <a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a>
+          </span>
+        </button>
+      <% else %>
+        <button name="promotions">
+          <span>
+            <%= link_to "Back to Promotions", admin_promotions_path %>
+          </span>
+        </button>
+      <% end %>
+    </div>
 
   <% end %>
 </div>

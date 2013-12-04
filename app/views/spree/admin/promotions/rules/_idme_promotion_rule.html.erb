@@ -1,65 +1,76 @@
 <div class="field alpha omega eight columns">
-  <center>
     <% # Parse out the current promotion rule from the params prefix %>
     <% rules_id = param_prefix.scan(/\d+/)[0].to_i %>
     <% rules = IdmePromotionRule.find rules_id %>
+    <table>
+      <tr>
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_military_active]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_military_active]", 1, rules.idme_military_active == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_military_active", "Service Members" %>
+        </td>
 
-    <%= hidden_field_tag "#{param_prefix}[idme_military_active]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_military_active]", 1, rules.idme_military_active == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_military_active", Spree.t('promotion_rule.service_members') %>
-    &nbsp;
-    &nbsp;
-    <%= hidden_field_tag "#{param_prefix}[idme_military_veteran]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_military_veteran]", 1, rules.idme_military_veteran == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_military_veteran", Spree.t('promotion_rule.veterans') %>
-    &nbsp;
-    &nbsp;
-    <%= hidden_field_tag "#{param_prefix}[idme_military_retiree]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_military_retiree]", 1, rules.idme_military_retiree == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_military_retiree", Spree.t('promotion_rule.military_retirees') %>
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_military_veteran]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_military_veteran]", 1, rules.idme_military_veteran == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_military_veteran", "Veterans" %>
+        </td>
 
-    <br />
-    <br />
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_military_retiree]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_military_retiree]", 1, rules.idme_military_retiree == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_military_retiree", "Military Retirees" %>
+        </td>
 
-    <%= hidden_field_tag "#{param_prefix}[idme_military_spouse]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_military_spouse]", 1, rules.idme_military_spouse == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_military_spouse", Spree.t('promotion_rule.military_spouse') %>
-    &nbsp;
-    &nbsp;
-    <%= hidden_field_tag "#{param_prefix}[idme_military_family]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_military_family]", 1, rules.idme_military_family == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_military_family", Spree.t('promotion_rule.military_family') %>
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_military_spouse]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_military_spouse]", 1, rules.idme_military_spouse == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_military_spouse", "Military Spouse" %>
+        </td>
 
-    <br />
-    <br />
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_military_family]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_military_family]", 1, rules.idme_military_family == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_military_family", "Military Family" %>
+        </td>
 
-    <%= hidden_field_tag "#{param_prefix}[idme_responder_emt]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_responder_emt]", 1, rules.idme_responder_emt == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_responder_emt", Spree.t('promotion_rule.emts') %>
-    &nbsp;
-    &nbsp;
-    <%= hidden_field_tag "#{param_prefix}[idme_responder_firefighter]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_responder_firefighter]", 1, rules.idme_responder_firefighter == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_responder_firefighter", Spree.t('promotion_rule.firefighters') %>
-    &nbsp;
-    &nbsp;
-    <%= hidden_field_tag "#{param_prefix}[idme_responder_police]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_responder_police]", 1, rules.idme_responder_police == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_responder_police", Spree.t('promotion_rule.police_officers') %>
-    &nbsp;
-    &nbsp;
-    <%= hidden_field_tag "#{param_prefix}[idme_student]", "0" %>
-    <%= check_box_tag "#{param_prefix}[idme_student]", 1, rules.idme_student == true ? true : false %>
-    <%= label_tag "#{param_prefix}_idme_student", Spree.t('promotion_rule.students') %>
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_responder_emt]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_responder_emt]", 1, rules.idme_responder_emt == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_responder_emt", "EMTs" %>
+        </td>
 
-    <br />
-    <br />
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_responder_firefighter]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_responder_firefighter]", 1, rules.idme_responder_firefighter == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_responder_firefighter", "Firefighters" %>
+        </td>
 
-    <% if SpreeIdmeSetting.first.idme_client_id_string.nil? || SpreeIdmeSetting.first.idme_client_id_string.blank? %>
-      <a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a>
-    <% end %>
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_responder_police]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_responder_police]", 1, rules.idme_responder_police == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_responder_police", "Police Officers" %>
+        </td>
 
-    <%= link_to "Site-Wide ID.me Settings", admin_idme_settings_path, :class => "button" %>
-  </center>
+        <td>
+          <%= hidden_field_tag "#{param_prefix}[idme_student]", "0" %>
+          <%= check_box_tag "#{param_prefix}[idme_student]", 1, rules.idme_student == true ? true : false %>
+          <%= label_tag "#{param_prefix}_idme_student", "Students" %>
+        </td>
 
+        <td>
+          <% if SpreeIdmeSetting.first.idme_client_id_string.nil? || SpreeIdmeSetting.first.idme_client_id_string.blank? %>
+            <button name="api_keys">
+              <span><a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a></span>
+            </button>
+          <% end %>
+        </td>
+
+        <td>
+          <button name="settings">
+            <span><%= link_to "ID.me Settings", admin_idme_settings_path %></span>
+          </button>
+        </td>
+      </tr>
+    </table>
 </div>
