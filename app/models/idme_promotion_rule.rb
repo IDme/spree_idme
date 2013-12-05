@@ -13,31 +13,31 @@ class IdmePromotionRule < Spree::PromotionRule
 
     require 'json'
     if !order.idme_access_token.nil?
-      begin
-        if idme_military_active || idme_military_family || idme_military_veteran || idme_military_retiree || idme_military_spouse
-          military_request = JSON.parse(open("#{url_to_endpoint}/military.json?access_token=#{order.idme_access_token}").read)
-        end
+      if idme_military_active || idme_military_family || idme_military_veteran || idme_military_retiree || idme_military_spouse
         military_endpoint = true
-      rescue OpenURI::HTTPError
-        military_endpoint = false
+        begin
+          military_request = JSON.parse(open("#{url_to_endpoint}/military.json?access_token=#{order.idme_access_token}").read)
+        rescue OpenURI::HTTPError
+          military_endpoint = false
+        end
       end
 
-      begin
-        if idme_responder_emt || idme_responder_firefighter || idme_responder_police
-          responder_request = JSON.parse(open("#{url_to_endpoint}/responder.json?access_token=#{order.idme_access_token}").read)
-        end
+      if idme_responder_emt || idme_responder_firefighter || idme_responder_police
         responder_endpoint = true
-      rescue OpenURI::HTTPError
-        responder_endpoint = false
+        begin
+          responder_request = JSON.parse(open("#{url_to_endpoint}/responder.json?access_token=#{order.idme_access_token}").read)
+        rescue OpenURI::HTTPError
+          responder_endpoint = false
+        end
       end
 
-      begin
-        if idme_student
-          student_request = JSON.parse(open("#{url_to_endpoint}/student.json?access_token=#{order.idme_access_token}").read)
-        end
+      if idme_student
         student_endpoint = true
-      rescue OpenURI::HTTPError
-        student_endpoint = false
+        begin
+          student_request = JSON.parse(open("#{url_to_endpoint}/student.json?access_token=#{order.idme_access_token}").read)
+        rescue OpenURI::HTTPError
+          student_endpoint = false
+        end
       end
 
       if military_endpoint
