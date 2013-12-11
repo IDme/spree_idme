@@ -4,7 +4,7 @@ module Spree
 
     def attach_idme_access_token!(request_code, client_id, client_secret, redirect_uri, sandbox)
       if sandbox
-        url_to_post = "https://api.sandbox.id.me/oauth/token" 
+        url_to_post = "https://api.sandbox.id.me/oauth/token"
       else
         url_to_post = "https://api.id.me/oauth/token"
       end
@@ -20,5 +20,6 @@ module Spree
       self.idme_access_token = result["access_token"]
       self.save
     end
+
   end
 end

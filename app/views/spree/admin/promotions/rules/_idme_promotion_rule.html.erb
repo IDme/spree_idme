@@ -4,65 +4,26 @@
     <% rules = IdmePromotionRule.find rules_id %>
     <table>
       <tr>
-        <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_military_active]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_military_active]", 1, rules.idme_military_active == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_military_active", "Service Members" %>
-        </td>
+        <% if @affinity_groups.nil? %>
+          <META HTTP-EQUIV="refresh" CONTENT="1">
+        <% else %>
+          <%= hidden_field_tag "idme_promotion_rules_id", rules_id %>
+          <% @affinity_groups.each do |group| %>
+            <td>
+              <%= check_box_tag "active_promotion_affinities[]", group.id.to_s,
+                      rules.active_promotion_affinities.include?(group.id.to_s) %>
+              <%= label_tag "active_promotion_affinities[]", group.name %>
+            </td>
+          <% end %>
+        <% end %>
 
         <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_military_veteran]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_military_veteran]", 1, rules.idme_military_veteran == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_military_veteran", "Veterans" %>
-        </td>
-
-        <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_military_retiree]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_military_retiree]", 1, rules.idme_military_retiree == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_military_retiree", "Military Retirees" %>
-        </td>
-
-        <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_military_spouse]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_military_spouse]", 1, rules.idme_military_spouse == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_military_spouse", "Military Spouse" %>
-        </td>
-
-        <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_military_family]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_military_family]", 1, rules.idme_military_family == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_military_family", "Military Family" %>
-        </td>
-
-        <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_responder_emt]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_responder_emt]", 1, rules.idme_responder_emt == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_responder_emt", "EMTs" %>
-        </td>
-
-        <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_responder_firefighter]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_responder_firefighter]", 1, rules.idme_responder_firefighter == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_responder_firefighter", "Firefighters" %>
-        </td>
-
-        <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_responder_police]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_responder_police]", 1, rules.idme_responder_police == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_responder_police", "Police Officers" %>
-        </td>
-
-        <td>
-          <%= hidden_field_tag "#{param_prefix}[idme_student]", "0" %>
-          <%= check_box_tag "#{param_prefix}[idme_student]", 1, rules.idme_student == true ? true : false %>
-          <%= label_tag "#{param_prefix}_idme_student", "Students" %>
-        </td>
-
-        <td>
-          <% if SpreeIdmeSetting.first.idme_client_id_string.nil? || SpreeIdmeSetting.first.idme_client_id_string.blank? %>
-            <button name="api_keys">
-              <span><a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a></span>
-            </button>
+          <% unless @settings.nil? %>
+            <% if @settings.idme_client_id_string.nil? || @settings.idme_client_id_string.blank? %>
+              <button name="api_keys">
+                <span><a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a></span>
+              </button>
+            <% end %>
           <% end %>
         </td>
 

@@ -3,6 +3,7 @@ module Spree
     class IdmeSettingsController < Spree::Admin::BaseController
       def index
         @settings = SpreeIdmeSetting.first
+        @affinity_groups = AffinityGroup.all
       end
 
       def update

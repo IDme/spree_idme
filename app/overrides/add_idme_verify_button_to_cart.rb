@@ -107,6 +107,7 @@ Deface::Override.new(:virtual_path => 'spree/orders/edit',
                             <img alt='Verify your first responder affiliation with ID.me' src='<%= SpreeIdmeSetting.first.responder_button %>' /></a>
                           <% end %>
                         <% end %>
+                        <%= link_to 'Log out of ID.me', 'https://www.sandbox.id.me/users/sign-out', :method => :delete %>
                         <br />
                         <br />
                         <br />",

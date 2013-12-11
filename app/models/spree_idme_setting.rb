@@ -1,6 +1,20 @@
 class SpreeIdmeSetting < ActiveRecord::Base
   has_many :idme_promotion_rules
 
+  def update_affiliations_check
+    # Update AffinityGroups if they have never been updated.
+    if self.affiliations_updated_at.nil?
+      AffinityGroup.update_all
+      self.affiliations_updated_at = Time.now
+      self.save
+    # Update AffinityGroups if they have not been updated in 2 weeks.
+    elsif Time.now - self.affiliations_updated_at > 1209600
+      AffinityGroup.update_all
+      self.affiliations_updated_at = Time.now
+      self.save
+    end
+  end
+
   def update_site_idme_settings!(params)
     self.idme_client_id_string = params["idme_client_id_string"]
     self.idme_client_secret    = params["idme_client_secret"]
