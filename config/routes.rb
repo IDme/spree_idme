@@ -12,4 +12,5 @@ Spree::Core::Engine.routes.draw do
       put :publish
     end
   end
+  resources :affinity_group
 end

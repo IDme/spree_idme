@@ -48,4 +48,9 @@ class AffinityGroup < ActiveRecord::Base
 
   end
 
+  def update_button!(uri)
+    self.button = uri
+    self.save
+  end
+
 end
