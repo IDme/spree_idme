@@ -12,15 +12,16 @@ class SpreeIdmeSetting < ActiveRecord::Base
       AffinityGroup.update_all
       self.affiliations_updated_at = Time.now
       self.save
+    elsif AffinityGroup.count < 1
+      AffinityGroup.update_all
+      self.affiliations_updated_at = Time.now
+      self.save
     end
   end
 
   def update_site_idme_settings!(params)
     self.idme_client_id_string = params["idme_client_id_string"]
     self.idme_client_secret    = params["idme_client_secret"]
-    self.responder_button      = params["responder_button"]
-    self.military_button       = params["military_button"]
-    self.student_button        = params["student_button"]
 
     redirect_uri               = URI.parse(params["redirect_uri"])
     redirect_uri.path          = URI.escape("/idme")

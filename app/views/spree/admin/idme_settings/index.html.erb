@@ -51,7 +51,10 @@
   <% @affinity_groups.each do |group| %>
     <%= form_for(group, :index => group.id) do |form| %>
       <div class="field alpha omega eight columns">
-        <%= form.label group.scope, "#{group.name} Button" %>
+        <%= form.label :enabled, "Enable #{group.name} discounts?" %>
+        <%= form.check_box :enabled %>
+        <br />
+        <%= form.label group.scope, "Select a #{group.name} Button" %>
         <% if group.scope == "military" %>
           <%= form.select :button,
               options_for_select(
@@ -87,7 +90,6 @@
                     "Medium White Square"       => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_32.png",
                     "Large White Square"        => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_40.png"
                   }, selected: group.button), {} %><br />
-          <%= form.submit "Update #{group.name} Button" %>
         <% else %>
           <%= form.select :button,
               options_for_select(
@@ -117,11 +119,12 @@
                     "Medium White Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_white_squ_32.png",
                     "Large White Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_white_squ_40.png"
                   }, selected: group.button), {} %><br />
-          <%= form.submit "Update #{group.name} Button" %>
         <% end %>
         <br />
-        <img src="<%= group.button %>" />
+        <div class="<%=group.class %><%=group.id %>"><img src="<%= group.button %>" /></div><br />
+        <%= form.submit "Update #{group.name}" %>
       </div>
     <% end %>
+    <br />
   <% end %>
 </div>

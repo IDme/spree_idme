@@ -14,7 +14,9 @@ Spree::Admin::PromotionsController.class_eval do
       @settings        = SpreeIdmeSetting.first
       @affinity_groups = AffinitySubgroup.all
 
-      @settings.update_affiliations_check
+      if @settings.idme_client_id_string
+        @settings.update_affiliations_check
+      end
 
       super
     end
