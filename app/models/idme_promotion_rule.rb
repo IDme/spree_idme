@@ -31,10 +31,18 @@ class IdmePromotionRule < Spree::PromotionRule
 
     unless order.idme_access_token.nil?
       if order.idme_verified_at.nil?
-        idme_request = JSON.parse(open("#{url_to_endpoint}/#{order.idme_scope}.json?access_token=#{order.idme_access_token}").read)
+        begin
+          idme_request = JSON.parse(open("#{url_to_endpoint}/#{order.idme_scope}.json?access_token=#{order.idme_access_token}").read)
+        rescue OpenURI::HTTPError
+          return false
+        end
         order.update_idme_verification!(idme_request)
       elsif order.idme_verified_at > Time.now + 2.hours
-        idme_request = JSON.parse(open("#{url_to_endpoint}/#{order.idme_scope}.json?access_token=#{order.idme_access_token}").read)
+        begin
+          idme_request = JSON.parse(open("#{url_to_endpoint}/#{order.idme_scope}.json?access_token=#{order.idme_access_token}").read)
+        rescue OpenURI::HTTPError
+          return false
+        end
         order.update_idme_verification!(idme_request)
       else
         idme_request = { "affiliation" => order.idme_affiliation, "verified" => order.idme_verified }
