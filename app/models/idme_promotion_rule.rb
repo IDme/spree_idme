@@ -44,9 +44,7 @@ class IdmePromotionRule < Spree::PromotionRule
       end
 
       if idme_request["verified"]
-        logger.ap idme_request
         affinity_subgroups.each do |group|
-          logger.ap group
           if idme_request["affiliation"] == group.name
             return true
           elsif idme_request["affiliation"] == nil
