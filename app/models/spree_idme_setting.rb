@@ -30,5 +30,13 @@ class SpreeIdmeSetting < ActiveRecord::Base
     self.idme_modal            = params["idme_modal"]
     self.idme_sandbox          = params["idme_sandbox"]
     self.save
+
+    # Update Affinity Groups upon saving valid client id
+    if self.idme_client_id_string
+      if AffinityGroup.count < 2
+        AffinityGroup.update_all
+      end
+    end
   end
+
 end

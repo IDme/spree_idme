@@ -38,21 +38,21 @@ class IdmePromotionRule < Spree::PromotionRule
         end
         order.update_idme_verification!(idme_request)
       elsif order.idme_verified_at > Time.now + 2.hours
-        begin
-          idme_request = JSON.parse(open("#{url_to_endpoint}/#{order.idme_scope}.json?access_token=#{order.idme_access_token}").read)
-        rescue OpenURI::HTTPError
-          return false
-        end
-        order.update_idme_verification!(idme_request)
+        return false
       else
         idme_request = { "affiliation" => order.idme_affiliation, "verified" => order.idme_verified }
       end
 
       if idme_request["verified"]
+        logger.ap idme_request
         affinity_subgroups.each do |group|
+          logger.ap group
           if idme_request["affiliation"] == group.name
             return true
+          elsif idme_request["affiliation"] == nil
+            return group.affinity_group.scope == order.idme_scope
           end
+
         end
       end
     end
