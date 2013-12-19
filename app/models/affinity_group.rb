@@ -1,6 +1,4 @@
 class AffinityGroup < ActiveRecord::Base
-  attr_accessible :groups, :name, :scope
-
   has_many :affinity_subgroups,   :dependent => :destroy
 
   serialize :groups

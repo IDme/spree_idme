@@ -9,6 +9,6 @@ class CreateSpreeIdmeSettings < ActiveRecord::Migration
       t.datetime :affiliations_updated_at
       t.timestamps
     end
-    SpreeIdmeSetting.create!({:idme_sandbox => true, :idme_modal => true}, :without_protection => true)
+    SpreeIdmeSetting.create!(:idme_sandbox => true, :idme_modal => true)
   end
 end

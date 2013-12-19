@@ -1,5 +1,5 @@
 module Spree
-  class IdmeController < Spree::BaseController
+  class IdmeController < Spree::StoreController
     def verification
       @settings = SpreeIdmeSetting.first
 

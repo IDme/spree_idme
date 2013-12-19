@@ -1,8 +1,5 @@
 class IdmePromotionRule < Spree::PromotionRule
-
   belongs_to :spree_idme_setting
-
-  attr_accessible :active_promotion_affinities
 
   serialize :active_promotion_affinities
 
