@@ -14,8 +14,7 @@ module Spree
 
       fire_event('spree.order.contents_changed')
 
-      if @settings.idme_modal
-      else
+      unless @settings.idme_modal
         redirect_to cart_path
       end
     end

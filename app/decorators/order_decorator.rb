@@ -1,10 +1,18 @@
 module Spree
   class Order < ActiveRecord::Base
+
     require 'httparty'
+
+    def update_idme_verification!(idme_request)
+      self.idme_verified      = idme_request["verified"]
+      self.idme_affiliation   = idme_request["affiliation"]
+      self.idme_verified_at   = Time.now
+      self.save
+    end
 
     def attach_idme_access_token!(request_code, client_id, client_secret, redirect_uri, sandbox)
       if sandbox
-        url_to_post = "https://api.sandbox.id.me/oauth/token" 
+        url_to_post = "https://api.sandbox.id.me/oauth/token"
       else
         url_to_post = "https://api.id.me/oauth/token"
       end
@@ -18,7 +26,9 @@ module Spree
                    }.to_json,
           :headers => { 'Content-Type' => 'application/json' } )
       self.idme_access_token = result["access_token"]
+      self.idme_scope        = result["scope"]
       self.save
     end
+
   end
 end

@@ -6,7 +6,7 @@ en:
     events:
       spree:
         idme: Verified with id.me
-          
+
     promotion_rule_types:
       idme_promotion_rule:
         name: "id.me"
