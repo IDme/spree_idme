@@ -19,12 +19,10 @@ bundle
 bundle exec rails g spree_idme:install
 ```
 
-Add the promotion rule to your application config (config/application.rb):
+Add the promotion rule to your spree configuration (config/initializers/spree.rb):
 
 ```ruby
-initializer "appname.register.promotion.rules" do |app|
-  app.config.spree.promotions.rules << Spree::Promotion::Rules::IdmePromotionRule
-end
+Rails.application.config.spree.promotions.rules << IdmePromotionRule
 ```
 Usage
 -----
