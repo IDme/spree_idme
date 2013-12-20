@@ -12,7 +12,7 @@ Spree::Admin::PromotionsController.class_eval do
 
     def edit
       @settings        = SpreeIdmeSetting.first
-      @affinity_groups = AffinitySubgroup.all
+      @affinity_groups = AffinityGroup.all
 
       if @settings.idme_client_id_string
         @settings.update_affiliations_check
