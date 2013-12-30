@@ -3,11 +3,16 @@ class IdmePromotionRule < Spree::PromotionRule
 
   serialize :active_promotion_affinities
 
-  def activate_affinity_groups!(group_ids)
+  def activate_affinity_groups!(group_ids, affinity_group_id)
+    affinity_selector = AffinityGroup.find(affinity_group_id)
+    affinity_ids = affinity_selector.affinity_subgroups.ids
+
+    active_promotion_affinities = group_ids.select { |i| affinity_ids.include?(i.to_i) }
+
     if group_ids.nil?
       self.active_promotion_affinities = []
     else
-      self.active_promotion_affinities = group_ids
+      self.active_promotion_affinities = active_promotion_affinities
     end
     self.save
   end

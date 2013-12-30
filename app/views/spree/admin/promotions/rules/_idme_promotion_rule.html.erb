@@ -2,23 +2,48 @@
   <% # Parse out the current promotion rule from the params prefix %>
   <% rules_id = param_prefix.scan(/\d+/)[0].to_i %>
   <% rules = IdmePromotionRule.find rules_id %>
+  <% active_promotions = [] %>
+  <% rules.active_promotion_affinities.each do |affinity| %>
+    <% active_promotions.push(AffinitySubgroup.find(affinity.to_i).name) %>
+  <% end %>
+  <p>Currently available to:
+  <% active_promotions.each do |promotion| %>
+    <%=promotion %>s,
+  <% end %></p><br />
   <% if @affinity_groups.nil? %>
     <META HTTP-EQUIV="refresh" CONTENT="1">
   <% else %>
     <%= hidden_field_tag "idme_promotion_rules_id", rules_id %>
     <% @affinity_groups.each do |affinity_group| %>
-      <div id="<%= affinity_group.scope %>-container">
+      <div style="overflow:hidden">
+        <input type="radio" name="affinity_selector" id="affinity<%= affinity_group.scope %>" value="<%=affinity_group.id %>">
         <%= affinity_group.name %>
         <div class="field alpha omega eight columns">
-          <% affinity_group.affinity_subgroups.each do |affinity_subgroup| %>
-            <%= check_box_tag "active_promotion_affinities[]", affinity_subgroup.id.to_s,
-                    rules.active_promotion_affinities.include?(affinity_subgroup.id.to_s) %>
-            <%= label_tag "active_promotion_affinities[]", affinity_subgroup.name %>
-          <% end %>
+          <div class="affinity affinity<%= affinity_group.scope %>" style="display:none">
+            <% affinity_group.affinity_subgroups.each do |affinity_subgroup| %>
+              <%= check_box_tag "active_promotion_affinities[]", affinity_subgroup.id.to_s,
+                      rules.active_promotion_affinities.include?(affinity_subgroup.id.to_s) %>
+              <%= label_tag "active_promotion_affinities[]", affinity_subgroup.name %>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
   <% end %>
+
+  <script>
+    $(document).ready(function() {
+
+        $("input[type=radio]").change(function()
+        {
+            var divId = $(this).attr("id");
+            $("div.affinity").hide();
+            $("." + divId).show();
+            $("input[type=checkbox]").change();
+        });
+
+    });
+  </script>
 
   <% unless @settings.nil? %>
     <% if @settings.idme_client_id_string.nil? || @settings.idme_client_id_string.blank? %>

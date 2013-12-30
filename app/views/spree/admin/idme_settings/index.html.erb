@@ -32,17 +32,9 @@
       </button>
 
       <% if @settings.idme_client_id_string.nil? || @settings.idme_client_id_string.blank? %>
-        <button name="obtain_keys">
-          <span>
-            <a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a>
-          </span>
-        </button>
+        <a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a>
       <% else %>
-        <button name="promotions">
-          <span>
-            <%= link_to "Back to Promotions", admin_promotions_path %>
-          </span>
-        </button>
+        <%= link_to "Back to Promotions", admin_promotions_path, :class => "button" %>
       <% end %>
     </div>
 

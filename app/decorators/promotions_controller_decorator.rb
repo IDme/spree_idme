@@ -4,7 +4,7 @@ Spree::Admin::PromotionsController.class_eval do
 
       unless params[:idme_promotion_rules_id].nil?
         rules = IdmePromotionRule.find(params[:idme_promotion_rules_id])
-        rules.activate_affinity_groups!(params[:active_promotion_affinities])
+        rules.activate_affinity_groups!(params[:active_promotion_affinities], params[:affinity_selector])
       end
 
       super
