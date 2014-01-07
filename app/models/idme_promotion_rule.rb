@@ -34,7 +34,7 @@ class IdmePromotionRule < Spree::PromotionRule
     unless order.idme_access_token.nil?
       if order.idme_verified_at.nil?
         begin
-          idme_request = JSON.parse(open("#{url_to_endpoint}/#{order.idme_scope}.json?access_token=#{order.idme_access_token}").read)
+          idme_request = HTTParty.get("#{url_to_endpoint}/#{order.idme_scope}.json?access_token=#{order.idme_access_token}", :headers => { "X-API-ORIGIN" => "SPREE-IDME" })
         rescue OpenURI::HTTPError
           return false
         end

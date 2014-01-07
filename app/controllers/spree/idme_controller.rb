@@ -18,5 +18,16 @@ module Spree
         redirect_to cart_path
       end
     end
+
+    def deactivate
+      @order = current_order(true)
+      @order.remove_idme_access_token!
+      @order.update!
+
+      fire_event('spree.order.contents_changed')
+
+      redirect_to cart_path
+    end
+
   end
 end

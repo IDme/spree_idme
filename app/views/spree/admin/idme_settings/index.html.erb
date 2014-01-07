@@ -42,7 +42,7 @@
 
   <% @affinity_groups.each do |group| %>
     <%= form_for(group, :index => group.id) do |form| %>
-      <div class="field alpha omega eight columns">
+      <div class="field alpha omega eight columns bordered">
         <%= form.label :enabled, "Enable #{group.name} discounts?" %>
         <%= form.check_box :enabled %>
         <br />
@@ -115,6 +115,7 @@
         <br />
         <div class="<%=group.class %><%=group.id %>"><img src="<%= group.button %>" /></div><br />
         <%= form.submit "Update #{group.name}" %>
+        <br />
       </div>
     <% end %>
     <br />
