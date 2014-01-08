@@ -2,4 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  spree:
+    events:
+      spree:
+        idme: Verified with id.me
+
+    promotion_rule_types:
+      idme_promotion_rule:
+        name: "id.me"
+        description: "Available to specified id.me users"
