@@ -1,0 +1,123 @@
+<div class="promotion_rule promotion-block alpha omega eight columns" id="idme_settings">
+    <%= form_for(@settings, :url => publish_admin_idme_settings_path) do |form| %>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :idme_client_id_string, "ID.me Client ID" %>
+      <%= form.text_field :idme_client_id_string, :class => 'fullwidth' %><br />
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :idme_client_secret, "ID.me Client Secret" %>
+      <%= form.text_field :idme_client_secret, :class => 'fullwidth' %><br />
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :redirect_uri, "Redirect URL" %>
+      <%= form.text_field :redirect_uri, :class => 'fullwidth' %><br />
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <%= form.label :idme_sandbox, "Sandbox Mode" %>
+      <%= form.check_box :idme_sandbox %>
+
+      <%= form.label :idme_modal, "Enable Modal" %>
+      <%= form.check_box :idme_modal %>
+    </div>
+
+    <div class="field alpha omega eight columns">
+      <button name="update_settings" type="submit">
+        <span>
+          Update ID.me Settings
+        </span>
+      </button>
+
+      <% if @settings.idme_client_id_string.nil? || @settings.idme_client_id_string.blank? %>
+        <a href="https://developer.id.me/" target="_blank" class="button">Obtain IDme API Keys</a>
+      <% else %>
+        <%= link_to "Back to Promotions", admin_promotions_path, :class => "button" %>
+      <% end %>
+    </div>
+
+  <% end %>
+
+  <% @affinity_groups.each do |group| %>
+    <%= form_for(group, :index => group.id) do |form| %>
+      <div class="field alpha omega eight columns bordered">
+        <%= form.label :enabled, "Enable #{group.name} discounts?" %>
+        <%= form.check_box :enabled %>
+        <br />
+        <%= form.label group.scope, "Select a #{group.name} Button" %>
+        <% if group.scope == "military" %>
+          <%= form.select :button,
+              options_for_select(
+                  {
+                    "Small Red Rounded"         => "https://s3.amazonaws.com/idme/buttons/troop_red_rnd_20.png",
+                    "Medium Red Rounded"        => "https://s3.amazonaws.com/idme/buttons/troop_red_rnd_32.png",
+                    "Large Red Rounded"         => "https://s3.amazonaws.com/idme/buttons/troop_red_rnd_40.png",
+                    "Small Red Square"          => "https://s3.amazonaws.com/idme/buttons/troop_red_squ_20.png",
+                    "Medium Red Square"         => "https://s3.amazonaws.com/idme/buttons/troop_red_squ_32.png",
+                    "Large Red Square"          => "https://s3.amazonaws.com/idme/buttons/troop_red_squ_40.png",
+                    "Small Black Rounded"       => "https://s3.amazonaws.com/idme/buttons/troop_black_rnd_20.png",
+                    "Medium Black Rounded"      => "https://s3.amazonaws.com/idme/buttons/troop_black_rnd_32.png",
+                    "Large Black Rounded"       => "https://s3.amazonaws.com/idme/buttons/troop_black_rnd_40.png",
+                    "Small Black Square"        => "https://s3.amazonaws.com/idme/buttons/troop_black_squ_20.png",
+                    "Medium Black Square"       => "https://s3.amazonaws.com/idme/buttons/troop_black_squ_32.png",
+                    "Large Black Square"        => "https://s3.amazonaws.com/idme/buttons/troop_black_squ_40.png",
+                    "Small Light Gray Rounded"  => "https://s3.amazonaws.com/idme/buttons/troop_gray1_rnd_20.png",
+                    "Medium Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/troop_gray1_rnd_32.png",
+                    "Large Light Gray Rounded"  => "https://s3.amazonaws.com/idme/buttons/troop_gray1_rnd_40.png",
+                    "Small Light Gray Square"   => "https://s3.amazonaws.com/idme/buttons/troop_gray1_squ_20.png",
+                    "Medium Light Gray Square"  => "https://s3.amazonaws.com/idme/buttons/troop_gray1_squ_32.png",
+                    "Large Light Gray Square"   => "https://s3.amazonaws.com/idme/buttons/troop_gray1_squ_40.png",
+                    "Small Dark Gray Rounded"   => "https://s3.amazonaws.com/idme/buttons/troop_gray2_rnd_20.png",
+                    "Medium Dark Gray Rounded"  => "https://s3.amazonaws.com/idme/buttons/troop_gray2_rnd_32.png",
+                    "Large Dark Gray Rounded"   => "https://s3.amazonaws.com/idme/buttons/troop_gray2_rnd_40.png",
+                    "Small Dark Gray Square"    => "https://s3.amazonaws.com/idme/buttons/troop_gray2_squ_20.png",
+                    "Medium Dark Gray Square"   => "https://s3.amazonaws.com/idme/buttons/troop_gray2_squ_32.png",
+                    "Large Dark Gray Square"    => "https://s3.amazonaws.com/idme/buttons/troop_gray2_squ_40.png",
+                    "Small White Rounded"       => "https://s3.amazonaws.com/idme/buttons/troop_white_rnd_20.png",
+                    "Medium White Rounded"      => "https://s3.amazonaws.com/idme/buttons/troop_white_rnd_32.png",
+                    "Large White Rounded"       => "https://s3.amazonaws.com/idme/buttons/troop_white_rnd_40.png",
+                    "Small White Square"        => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_20.png",
+                    "Medium White Square"       => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_32.png",
+                    "Large White Square"        => "https://s3.amazonaws.com/idme/buttons/troop_white_squ_40.png"
+                  }, selected: group.button), {} %><br />
+        <% else %>
+          <%= form.select :button,
+              options_for_select(
+                  {
+                    "Small Black Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_black_rnd_20.png",
+                    "Medium Black Rounded"=> "https://s3.amazonaws.com/idme/buttons/#{group.scope}_black_rnd_32.png",
+                    "Large Black Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_black_rnd_40.png",
+                    "Small Black Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_black_squ_20.png",
+                    "Medium Black Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_black_squ_32.png",
+                    "Large Black Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_black_squ_40.png",
+                    "Small Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray1_rnd_20.png",
+                    "Medium Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray1_rnd_32.png",
+                    "Large Light Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray1_rnd_40.png",
+                    "Small Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray1_squ_20.png",
+                    "Medium Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray1_squ_32.png",
+                    "Large Light Gray Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray1_squ_40.png",
+                    "Small Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray2_rnd_20.png",
+                    "Medium Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray2_rnd_32.png",
+                    "Large Dark Gray Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray2_rnd_40.png",
+                    "Small Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray2_squ_20.png",
+                    "Medium Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray2_squ_32.png",
+                    "Large Dark Gray Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_gray2_squ_40.png",
+                    "Small White Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_white_rnd_20.png",
+                    "Medium White Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_white_rnd_32.png",
+                    "Large White Rounded" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_white_rnd_40.png",
+                    "Small White Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_white_squ_20.png",
+                    "Medium White Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_white_squ_32.png",
+                    "Large White Square" => "https://s3.amazonaws.com/idme/buttons/#{group.scope}_white_squ_40.png"
+                  }, selected: group.button), {} %><br />
+        <% end %>
+        <br />
+        <div class="<%=group.class %><%=group.id %>"><img src="<%= group.button %>" /></div><br />
+        <%= form.submit "Update #{group.name}" %>
+        <br />
+      </div>
+    <% end %>
+    <br />
+  <% end %>
+</div>
