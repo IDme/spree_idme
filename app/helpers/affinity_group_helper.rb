@@ -1,0 +1,2 @@
+module AffinityGroupHelper
+end
