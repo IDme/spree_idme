@@ -9,7 +9,7 @@ Installation
 Add spree_idme to your Gemfile:
 
 ```ruby
-gem 'spree_idme', :git => "git://github.com/IDme/spree_idme.git"
+gem 'spree_idme', :git => 'https://github.com/IDme/spree_idme.git', :branch => '1-1-stable'
 ```
 
 Bundle your dependencies and run the installation generator:
