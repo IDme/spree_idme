@@ -40,6 +40,8 @@
 
   <% end %>
 
+  <p>Note: If you wish to utilize affinity groups other than military, you must first contact us at <%= mail_to "api@id.me", "api@id.me", :subject => "Affinity Group Adjustment Request" %> so that we can enable this functionality for you.</p><br />
+
   <% @affinity_groups.each do |group| %>
     <%= form_for(group, :index => group.id) do |form| %>
       <div class="field alpha omega eight columns bordered">
