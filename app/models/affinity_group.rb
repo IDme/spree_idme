@@ -8,9 +8,9 @@ class AffinityGroup < ActiveRecord::Base
     settings = SpreeIdmeSetting.first
 
     if settings.idme_sandbox
-      url_to_endpoint = "https://api.sandbox.id.me/v2/affiliations.json"
+      url_to_endpoint = "http://api.sandbox.idme.dev/v2/affiliations.json"
     else
-      url_to_endpoint = "https://api.id.me/v2/affiliations.json"
+      url_to_endpoint = "http://api.idme.dev/v2/affiliations.json"
     end
 
     begin

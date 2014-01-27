@@ -6,9 +6,9 @@ Deface::Override.new(:virtual_path => 'spree/orders/edit',
                           <%= link_to 'Remove Promotion', '/idme/deactivate' %></p><br />
                         <% else %>
                           <% if @settings.idme_sandbox %>
-                            <% idme_server_url = 'http://sandbox.id.me/oauth/authorize' %>
+                            <% idme_server_url = 'http://sandbox.idme.dev/oauth/authorize' %>
                           <% else %>
-                            <% idme_server_url = 'https://www.id.me/oauth/authorize' %>
+                            <% idme_server_url = 'http://www.idme.dev/oauth/authorize' %>
                           <% end %>
 
                           <% @affinity_groups.each do |group| %>

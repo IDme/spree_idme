@@ -12,9 +12,9 @@ module Spree
 
     def attach_idme_access_token!(request_code, client_id, client_secret, redirect_uri, sandbox)
       if sandbox
-        url_to_post = "https://api.sandbox.id.me/oauth/token"
+        url_to_post = "http://api.sandbox.idme.dev/oauth/token"
       else
-        url_to_post = "https://api.id.me/oauth/token"
+        url_to_post = "http://api.idme.dev/oauth/token"
       end
 
       result = HTTParty.post(url_to_post.to_str,

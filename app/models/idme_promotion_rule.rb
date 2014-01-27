@@ -25,9 +25,9 @@ class IdmePromotionRule < Spree::PromotionRule
     end
 
     if settings.idme_sandbox
-      url_to_endpoint = "https://api.sandbox.id.me/v2"
+      url_to_endpoint = "http://api.sandbox.idme.dev/v2"
     else
-      url_to_endpoint = "https://api.id.me/v2"
+      url_to_endpoint = "http://api.idme.dev/v2"
     end
 
     unless order.idme_access_token.nil?
