@@ -31,6 +31,7 @@ module Spree
     end
 
     def remove_idme_access_token!
+      self.idme_scope        = nil
       self.idme_verified     = nil
       self.idme_affiliation  = nil
       self.idme_verified_at  = nil
